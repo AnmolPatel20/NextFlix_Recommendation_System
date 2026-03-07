@@ -1,0 +1,16 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code temp files
+.virtual_documents/
+
+# Notebook files (optional if not needed)
+notebooks/
+
+# OS files
+.DS_Store
+Thumbs.db

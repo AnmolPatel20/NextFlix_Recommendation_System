@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextFlix - Find your next movie instantly</title>
+    <!-- Google Fonts for Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <a href="/" class="logo">
+            NextFlix
+            <span class="logo-sub">~By Anmol</span>
+        </a>
+        <nav class="nav-links">
+            <a href="/" class="refresh-btn" title="Refresh">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                    <path
+                        d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+                </svg>
+                <span class="refresh-text">Refresh</span>
+            </a>
+
+            <!-- Hamburger Toggle for Mobile -->
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle Menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Dropdown -->
+        <div class="mobile-menu" id="mobile-menu">
+            <a href="#" id="workflow-btn">Work Flow</a>
+            <a href="https://github.com/anmol20042003/MovieRecommndation-System" target="_blank">Source Code</a>
+            <a href="https://github.com/anmol20042003/MovieRecommndation-System" target="_blank">Dataset</a>
+            <a href="https://anmolpatel20.github.io/Anmol_Portfolio/" target="_blank">About Developer</a>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <h1>Platform where movies find you.</h1>
+            <br>
+
+            <form method="POST" action="/" class="search-form">
+                <div class="input-group">
+                    <label for="movie1">Select Last Watched Movie</label>
+                    <input type="text" id="movie1" name="movie1" placeholder="Enter a movie title..." list="movie-list"
+                        required autocomplete="off" value="{{ request.form.movie1 if request.form.movie1 else '' }}">
+                </div>
+
+                <div class="input-group">
+                    <label for="movie2">Optional</label>
+                    <input type="text" id="movie2" name="movie2" placeholder="Choose a movie to compare..."
+                        list="movie-list" autocomplete="off"
+                        value="{{ request.form.movie2 if request.form.movie2 else '' }}">
+                </div>
+
+                <datalist id="movie-list">
+                    {% for movie in movies %}
+                    <option value="{{ movie }}"></option>
+                    {% endfor %}
+                </datalist>
+
+                <button type="submit" class="submit-btn" id="search-btn">
+                    <span class="btn-text">Search</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- Error / Message -->
+        {% if message %}
+        <div class="alert">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+            </svg>
+            <span>{{ message }}</span>
+        </div>
+        {% endif %}
+
+        <!-- Relationship Panel -->
+        {% if relation %}
+        <div class="relation-panel">
+            <h2 class="relation-title">Relationship Analysis</h2>
+            <div class="relation-movies">
+                <div class="badge">{{ request.form.movie1 }}</div>
+                <svg fill="#E50914" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                </svg>
+                <div class="badge">{{ request.form.movie2 }}</div>
+            </div>
+
+            <div class="relation-stats">
+                <div class="relation-item">
+                    <span class="label">Watched Together</span>
+                    <span class="value">
+                        {% if relation.Support is number %}
+                        {{ (relation.Support * 100)|round(2) }}%
+                        {% else %}
+                        {{ relation.Support }}
+                        {% endif %}
+                    </span>
+                    <p class="subtext">This means about {% if relation.Support is number %}{{ (relation.Support *
+                        100)|round(2) }}%{% else %}{{ relation.Support }}{% endif %} of viewers watched both movies.</p>
+                </div>
+                <div class="relation-item">
+                    <span class="label">Recommendation Strength</span>
+                    <span class="value">
+                        {% if relation.Confidence is number %}
+                        {{ (relation.Confidence * 100)|round(0)|int }}%
+                        {% else %}
+                        {{ relation.Confidence }}
+                        {% endif %}
+                    </span>
+                    <p class="subtext">{% if relation.Confidence is number %}{{ (relation.Confidence * 100)|round(0)|int
+                        }}%{% else %}{{ relation.Confidence }}{% endif %} of people who watched {{ request.form.movie1
+                        }} also watched {{ request.form.movie2 }}.</p>
+                </div>
+                <div class="relation-item">
+                    <span class="label">Connection Strength</span>
+                    <span class="value highlight">
+                        {% if relation.Lift is number %}
+                        {{ relation.Lift|round(1) }}×
+                        {% else %}
+                        {{ relation.Lift }}
+                        {% endif %}
+                    </span>
+                    <p class="subtext">These movies are {% if relation.Lift is number %}{{ relation.Lift|round(1) }}{%
+                        else %}{{ relation.Lift }}{% endif %} times more likely to be watched together than random
+                        movies.</p>
+                </div>
+            </div>
+
+            <button type="button" class="back-btn" onclick="backToRecommendations()">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                </svg>
+                Back to Recommendations
+            </button>
+        </div>
+        {% endif %}
+
+        <!-- Recommendations List -->
+        {% if result %}
+        <h2 class="section-title">Top Recommendations After "{{ request.form.movie1 }}"</h2>
+        <div class="recommendation-list">
+            {% for item in result %}
+            <div class="list-card" {{ 'style="animation-delay: ' ~ (loop.index0 * 0.05) ~ 's"' | safe }}>
+                <div class="list-card-content">
+                    <h3 class="list-card-title">{{ item.Movie2 }}</h3>
+                    <button type="button" class="why-btn" data-movie="{{ item.Movie2 }}"
+                        onclick="checkRelationship(this.getAttribute('data-movie'))">
+                        🔍 Why This Recommendation?
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </main>
+
+    <!-- Static Information Strip -->
+    <div class="static-strip-wrap">
+        <div class="static-strip-content">
+            <div class="static-item">
+                NextFlix uses the <a href="https://www.geeksforgeeks.org/machine-learning/apriori-algorithm/"
+                    target="_blank" style="color: red; text-decoration: underline;">Apriori algorithm</a> with support,
+                confidence, and lift to identify co-watched movie patterns and generate recommendations.
+                <br>
+                Explore the Developer's <a href="https://anmolpatel20.github.io/Anmol_Portfolio/" target="_blank"
+                    class="dataset-link">Portfolio</a> |
+                Click <a href="https://github.com/anmol20042003/MovieRecommndation-System/blob/main/netflix_dataset.csv"
+                    target="_blank" class="dataset-link">here</a> to see pre-defined dataset.
+            </div>
+        </div>
+    </div>
+
+    <!-- Scrolling Movies Strip -->
+    <div class="movie-ticker-wrap">
+        <div class="movie-ticker">
+            <div class="ticker-content">
+                {% for movie in movies %}
+                <span class="ticker-item">{{ movie }}</span>
+                <span class="ticker-separator">•</span>
+                {% endfor %}
+                <!-- Duplicate for seamless loop -->
+                {% for movie in movies %}
+                <span class="ticker-item">{{ movie }}</span>
+                <span class="ticker-separator">•</span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Personal Branding Watermark -->
+    <div class="brand-watermark">~ Anmol</div>
+
+    <!-- Lightbox for Workflow -->
+    <div id="workflow-lightbox" class="lightbox">
+        <span class="lightbox-close" id="lightbox-close">❌</span>
+        <img class="lightbox-content" id="lightbox-img"
+            src="{{ url_for('static', filename='images/NextFlix_Workflow.png') }}" alt="NextFlix Workflow">
+    </div>
+
+    <script>
+        // Set recommended movie into the second search field and submit to check relationship
+        function checkRelationship(movieName) {
+            const movie2Input = document.getElementById('movie2');
+            const searchForm = document.querySelector('.search-form');
+            if (movie2Input && searchForm) {
+                movie2Input.value = movieName;
+
+                // Visually show searching
+                const btnText = searchForm.querySelector('.btn-text');
+                if (btnText) btnText.innerHTML = 'Searching...';
+
+                // Submit form manually to trigger relationship analysis
+                searchForm.submit();
+            }
+        }
+
+        // Return to recommendations by clearing movie2 and submitting
+        function backToRecommendations() {
+            const movie2Input = document.getElementById('movie2');
+            const searchForm = document.querySelector('.search-form');
+            if (movie2Input && searchForm) {
+                movie2Input.value = ''; // Clear second movie input
+
+                // Visually show loading
+                const btnText = searchForm.querySelector('.btn-text');
+                if (btnText) btnText.innerHTML = 'Loading...';
+
+                // Submit form manually to get recommendations for first movie
+                searchForm.submit();
+            }
+        }
+
+        // Adding button animation on click
+        const searchBtn = document.getElementById('search-btn');
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function () {
+                // simple scaling effect handled by CSS, but can add loading text if needed
+                const btnText = this.querySelector('.btn-text');
+                btnText.innerHTML = 'Searching...';
+
+                // Allow form to submit smoothly
+                setTimeout(() => {
+                    btnText.innerHTML = 'Search';
+                }, 2000);
+            });
+        }
+
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', function () {
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            });
+        }
+
+        // Lightbox functionality for Work Flow
+        const workflowBtn = document.getElementById('workflow-btn');
+        const lightbox = document.getElementById('workflow-lightbox');
+        const lightboxClose = document.getElementById('lightbox-close');
+
+        if (workflowBtn && lightbox && lightboxClose) {
+            workflowBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                lightbox.style.display = 'flex';
+                // Close mobile menu if open
+                if (hamburgerBtn && hamburgerBtn.classList.contains('active')) {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                }
+            });
+
+            lightboxClose.addEventListener('click', function () {
+                lightbox.style.display = 'none';
+            });
+
+            // Close when clicking outside image
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
