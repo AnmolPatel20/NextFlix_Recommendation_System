@@ -1,9 +1,15 @@
-EADME.md.
-
 # 🎬 NextFlix Movie Recommendation System
 
 A **movie recommendation web application** inspired by Netflix that suggests movies using **Association Rule Mining (Apriori Algorithm)**.  
 The system analyzes relationships between movies and provides recommendations along with explanation metrics like **Support, Confidence, and Lift**.
+
+---
+
+## 🔗 Project Links
+
+- **Live Demo:** [https://your-deployment-link](https://nextflix-recommendation-system.onrender.com/)
+- **Portfolio:** [https://your-portfolio-link](https://anmolpatel20.github.io/Anmol_Portfolio/)
+- **Certificate:** [https://your-certificate-link](https://unstop.com/certificate-preview/4345a3ef-85cf-458a-9bb5-b7097d374f09)
 
 ---
 
