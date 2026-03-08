@@ -30,6 +30,11 @@ The system is built using:
 
 ---
 
+## 📷 Workflow Diagram
+
+![Workflow Diagram](https://raw.githubusercontent.com/AnmolPatel20/NextFlix_Recommendation_System/main/static/images/NextFlix_Workflow.png)
+---
+
 ## 🧠 Recommendation Logic
 
 The system uses **Association Rule Mining (Apriori Algorithm)** to discover patterns in movie watching behavior.
@@ -74,19 +79,6 @@ Rendered Results (index.html)
 
 ---
 
-## 📊 Workflow
-
-1. User selects **Movie1 (required)** and optionally **Movie2**.
-2. The frontend sends a **POST request** to Flask.
-3. Flask backend processes the request.
-4. The **MovieRecommender class** analyzes Apriori rules.
-5. The system returns:
-   - Top movie recommendations
-   - OR relationship analysis between two movies.
-6. Results are rendered in the UI.
-
----
-
 ## 📁 Project Structure
 
 ```
@@ -125,11 +117,6 @@ The project is deployed using **Render**.
 ✔ Clean Flask web interface  
 ✔ Lightweight dataset-based recommendation engine  
 
----
-
-## 📷 Workflow Diagram
-
-![Workflow Diagram](https://raw.githubusercontent.com/AnmolPatel20/NextFlix_Recommendation_System/main/static/images/NextFlix_Workflow.png)
 ---
 
 ## 🛠 Technologies Used
