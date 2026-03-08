@@ -38,12 +38,12 @@ Key metrics used:
 
 Example rule:
 
-
+```
 Movie1 → Movie2
 Support: 0.02
 Confidence: 0.45
 Lift: 3.2
-
+```
 
 A **higher Lift value** indicates a stronger recommendation.
 
@@ -52,6 +52,7 @@ A **higher Lift value** indicates a stronger recommendation.
 ## 🏗 System Architecture
 
 
+```
 User Interface (HTML + CSS)
 ↓
 Flask Backend (app.py)
@@ -63,7 +64,7 @@ Apriori Rules Dataset (movie_rules.csv)
 Recommendations / Relationship Analysis
 ↓
 Rendered Results (index.html)
-
+```
 
 ---
 
@@ -82,7 +83,7 @@ Rendered Results (index.html)
 
 ## 📁 Project Structure
 
-
+```
 NextFlix_Recommendation_System
 │
 ├── app.py
@@ -91,18 +92,18 @@ NextFlix_Recommendation_System
 ├── netflix_data.csv
 │
 ├── model
-│ └── recommender.py
+│   └── recommender.py
 │
 ├── templates
-│ └── index.html
+│   └── index.html
 │
 ├── static
-│ ├── css
-│ │ └── style.css
-│ └── images
+│   ├── css
+│   │   └── style.css
+│   └── images
 │
 └── README.md
-
+```
 
 ---
 
@@ -122,8 +123,7 @@ The project is deployed using **Render**.
 
 ## 📷 Workflow Diagram
 
-![Workflow Diagram](workflow.png)
-
+![Workflow Diagram](https://raw.githubusercontent.com/AnmolPatel20/NextFlix_Recommendation_System/main/static/images/NextFlix_Workflow.png)
 ---
 
 ## 🛠 Technologies Used
