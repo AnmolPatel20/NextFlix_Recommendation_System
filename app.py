@@ -1,16 +1,16 @@
 from flask import Flask, render_template, request
-import pickle
-import os
 import pandas as pd
+import os
 
-# import recommender class so pickle can find it
 from model.recommender import MovieRecommender
 
 app = Flask(__name__)
 
-# Load model safely
-with open("movie_model.pkl", "rb") as f:
-    model = pickle.load(f)
+# Load rules dataset
+rules_df = pd.read_csv("movie_rules.csv")
+
+# Create recommender object
+model = MovieRecommender(rules_df)
 
 # Create sorted movie list
 movies = set(model.rules["Movie1"]).union(set(model.rules["Movie2"]))
