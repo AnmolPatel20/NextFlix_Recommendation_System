@@ -1,6 +1,6 @@
 # 🎬 NextFlix Movie Recommendation System
 
-A **movie recommendation web application** inspired by Netflix that suggests movies using **Association Rule Mining (Apriori Algorithm)**.  
+A **movie recommendation web application** inspired by Netflix that suggests movies using **Association Rule Mining ([Apriori Algorithm](https://www.geeksforgeeks.org/machine-learning/apriori-algorithm/))**. 
 The system analyzes relationships between movies and provides recommendations along with explanation metrics like **Support, Confidence, and Lift**.
 
 ---
