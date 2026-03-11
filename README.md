@@ -7,7 +7,7 @@ The system analyzes relationships between movies and provides recommendations al
 
 ## 🎥 Project Demo
 
-Watch the full demo of the project below:
+Watch the short demo of the project below:
 
 <p align="center">
 <a href="https://www.youtube.com/watch?v=fuyraec2YGo">
