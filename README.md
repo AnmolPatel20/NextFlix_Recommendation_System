@@ -5,6 +5,14 @@ The system analyzes relationships between movies and provides recommendations al
 
 ---
 
+## 🎬 Project Demo
+
+<video width="800" controls>
+  <source src="https://raw.githubusercontent.com/AnmolPatel20/project-demos-library/main/NextFlix_demo.mp4" type="video/mp4">
+</video>
+
+---
+
 ## 🔗 Project Links
 
 - **Live Demo:** https://nextflix-recommendation-system.onrender.com/
