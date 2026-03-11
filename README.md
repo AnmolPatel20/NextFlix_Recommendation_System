@@ -24,6 +24,7 @@ This video demonstrates the workflow of the website, how movie recommendations a
 - **Live Demo:** https://nextflix-recommendation-system.onrender.com/
 - **Portfolio:** https://anmolpatel20.github.io/Anmol_Portfolio/
 - **Certificate [Unstop]:** https://unstop.com/certificate-preview/4345a3ef-85cf-458a-9bb5-b7097d374f09
+- **Youtube Link:** https://www.youtube.com/watch?v=fuyraec2YGo
 
 ---
 
