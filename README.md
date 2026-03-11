@@ -9,7 +9,11 @@ The system analyzes relationships between movies and provides recommendations al
 
 Watch the full demo of the project below:
 
-[![NextFlix Demo](https://img.youtube.com/vi/fuyraec2YGo/0.jpg)](https://www.youtube.com/watch?v=fuyraec2YGo)
+<p align="center">
+<a href="https://www.youtube.com/watch?v=fuyraec2YGo">
+<img src="https://raw.githubusercontent.com/AnmolPatel20/project-demos-library/main/githubnextflix.png" width="900">
+</a>
+</p>
 
 This video demonstrates the workflow of the website, how movie recommendations are generated, and how users can refresh to discover new suggestions.
 
