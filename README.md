@@ -5,13 +5,13 @@ The system analyzes relationships between movies and provides recommendations al
 
 ---
 
-## 🎬 Project Demo
+<h2 align="center">🎬 Project Demo</h2>
 
-<video width="800" controls>
-  <source src="https://raw.githubusercontent.com/AnmolPatel20/project-demos-library/main/NextFlix_demo.mp4" type="video/mp4">
-</video>
-
----
+<p align="center">
+<a href="https://www.youtube.com/watch?v=fuyraec2YGo">
+<img src="https://img.youtube.com/vi/fuyraec2YGo/0.jpg" width="700">
+</a>
+</p>
 
 ## 🔗 Project Links
 
