@@ -5,13 +5,15 @@ The system analyzes relationships between movies and provides recommendations al
 
 ---
 
-<h2 align="center">🎬 Project Demo</h2>
+## 🎥 Project Demo
 
-<p align="center">
-<a href="https://www.youtube.com/watch?v=fuyraec2YGo">
-<img src="https://img.youtube.com/vi/fuyraec2YGo/0.jpg" width="700">
-</a>
-</p>
+Watch the full demo of the project below:
+
+[![NextFlix Demo](https://img.youtube.com/vi/fuyraec2YGo/0.jpg)](https://www.youtube.com/watch?v=fuyraec2YGo)
+
+This video demonstrates the workflow of the website, how movie recommendations are generated, and how users can refresh to discover new suggestions.
+
+---
 
 ## 🔗 Project Links
 
